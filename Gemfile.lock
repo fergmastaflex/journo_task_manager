@@ -42,6 +42,7 @@ GEM
     cancan (1.6.10)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    cocoon (1.2.3)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -189,6 +190,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (>= 3.0.0.0)
   cancan
+  cocoon
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails

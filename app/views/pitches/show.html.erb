@@ -1,4 +1,7 @@
 <h1><%= @pitch.headline %></h1>
-<h3>by: <%= @pitch.user_id %></h3>
+<h3>by: <%= @pitch.user.name %></h3>
 <p><%= @pitch.description %></p>
+<% @pitch.sources.each do |s| %>
+  <p><%= s.name %></p>
+<% end %>
 <h4><%= @pitch.complete_by %></h4>

@@ -14,6 +14,7 @@ class PitchesController < ApplicationController
 
   def new
     @pitch = Pitch.new
+    @pitch.sources.build
   end
 
   def create
