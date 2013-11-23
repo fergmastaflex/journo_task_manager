@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @pitches = Pitch.all
+    @weekly_pitches = Pitch.by_recent_week.all
   end
 end

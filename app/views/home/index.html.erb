@@ -1,2 +1,21 @@
-<h3>Home</h3>
-<%= link_to "Add a pitch", new_pitch_path %>
+<h1>Dashboard</h1>
+<div class='well col-md-3'>
+  <h4>Pitches this week:</h4>
+  <% @weekly_pitches.each do |p|%>
+    <p><b><%= p.headline %></b> <br/>by: <%= p.user.name %><br/><%= p.complete_by.strftime('%A') %></p>
+    <hr>
+  <% end %>
+</div>
+<div id="calendar" class='col-md-9'>
+  <%= calendar_for(@pitches) do |calendar| %>
+    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <%= calendar.day(:day_method => :complete_by) do |date, pitches| %>
+      <%= date.day %>
+      <% pitches.each do |p| %>
+      <ul>
+        <li><%= link_to p.headline, p %></li>
+      </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
