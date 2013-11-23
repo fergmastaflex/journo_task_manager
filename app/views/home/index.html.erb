@@ -1,6 +1,7 @@
 <h1>Dashboard</h1>
 <div class='well col-md-3'>
   <h4>Pitches this week:</h4>
+  <%= link_to "New pitch", new_pitch_path %>
   <% @weekly_pitches.each do |p|%>
     <p><b><%= p.headline %></b> <br/>by: <%= p.user.name %><br/><%= p.complete_by.strftime('%A') %></p>
     <hr>

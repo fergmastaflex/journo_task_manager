@@ -18,7 +18,7 @@ class PitchesController < ApplicationController
   end
 
   def create
-    @pitch = Pitch.new(params[:pitch])
+    @pitch = current_user.pitches.new(params[:pitch])
     if @pitch.save
       redirect_to @pitch, notice: 'Your pitch was created'
     else
