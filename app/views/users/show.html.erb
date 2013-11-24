@@ -1,3 +1,27 @@
-<h3>User</h3>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<h1><%= @user.name %></h1>
+<h3>Email: <%= @user.email if @user.email %></h3>
+
+<div class='well col-md-4'>
+  <h2>Pending:</h2>
+  <% @pending.each do |p| %>
+   <h3><%=link_to p.headline, pitch_path(p) %></h3>
+   <p><%= p.description %></p>
+   <%= link_to "Edit pitch", edit_pitch_path(p), class: 'btn btn-primary btn-sm' %>
+  <% end %>
+</div>
+<div class='well col-md-4'>
+  <h2>Approved:</h2>
+  <% @approved.each do |p| %>
+    <h3><%= link_to p.headline, pitch_path(p)%></h3>
+    <p><%= p.description %></p>
+    <%= link_to "Edit pitch", edit_pitch_path(p), class: 'btn btn-primary btn-sm' %>
+  <% end %>
+</div>
+<div class='well col-md-4'>
+  <h2>Rejected:</h2>
+  <% @rejected.each do |p| %>
+    <h3><%=link_to p.headline, pitch_path(p) %></h3>
+    <p><%= p.description %></p>
+    <%= link_to "Edit pitch", edit_pitch_path(p), class: 'btn btn-primary btn-sm' %>
+  <% end %>
+</div>

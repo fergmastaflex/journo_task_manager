@@ -1,17 +1,27 @@
-<%= simple_form_for @pitch do |f|%>
-  <%= f.error_notification %>
+<div class="col-md-6">
+  <div class="row">
+    <%= simple_form_for @pitch do |f|%>
+      <%= f.error_notification %>
 
-  <%= f.input :headline %>
-  
-  <%= f.input :description, :input_html => { :rows => 10, :style => 'resize:none;' }%>
-  <div class='sources'>
-    <%= f.simple_fields_for :sources do |source| %>
-      <%= render 'source_fields', f: source %>
+      <%= f.input :headline %>
+      <%= f.input :description, :input_html => { :rows => 5, :style => 'resize:none;' }%>
+      <div class='sources'>
+        <h4>Sources:</h4>
+        <%= f.simple_fields_for :sources do |source| %>
+          <%= render 'source_fields', f: source %>
+        <% end %>
+        <div class='link'>
+          <%= link_to_add_association 'Add source', f, :sources %>
+        </div>
+      </div>
+      <%= f.input :art, :input_html => { :rows => 3, :style => 'resize:none;' } %>
+      <div>
+      <%= f.input :complete_by%>
+      <%# if user_signed_in? && current_user.has_any_role?(:editor, :publisher)  %>
+      <% if can? :manage, @pitch %>
+        <%= f.input :status, collection: @pitch.statuses, :selected => "Pending" %>
+      <% end %>
+      <%= f.button :submit %>
     <% end %>
-    <div class='link'>
-      <%= link_to_add_association 'Add source', f, :sources %>
-    </div>
   </div>
-  <%= f.input :complete_by %>
-  <%= f.button :submit %>
-<% end %>
+</div>

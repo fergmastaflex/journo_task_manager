@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pending = Pitch.pending
+    @rejected = Pitch.rejected
+    @approved = Pitch.approved
   end
   
   def update

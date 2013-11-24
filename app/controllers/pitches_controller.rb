@@ -1,4 +1,7 @@
 class PitchesController < ApplicationController
+  check_authorization
+  load_and_authorize_resource
+
   before_filter :find_pitch, only: [:show, :edit, :update, :destroy]
   def index
     @pitches = Pitch.all
@@ -28,7 +31,7 @@ class PitchesController < ApplicationController
 
   def update
     if @pitch.update_attributes(params[:pitch])
-      redirect_to @pitch, notice: 'Your pitch was updated'
+      redirect_to root_path, notice: 'Your pitch was updated'
     else
       render action: 'edit'
     end

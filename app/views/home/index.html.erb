@@ -1,9 +1,26 @@
-<h1>Dashboard</h1>
+<div class='row'>
+  <div class='col-md-2'>
+    <h1>Dashboard</h1>
+  </div>
+  <div class='col-md-2 col-md-offset-8'>
+    <br />
+    <%= link_to "New pitch", new_pitch_path, class: "btn btn-default btn-lg "%>
+  </div>
+</div>
 <div class='well col-md-3'>
   <h4>Pitches this week:</h4>
-  <%= link_to "New pitch", new_pitch_path %>
   <% @weekly_pitches.each do |p|%>
     <p><b><%= p.headline %></b> <br/>by: <%= p.user.name %><br/><%= p.complete_by.strftime('%A') %></p>
+    <% if can? :manage, Pitch %>
+      <div class='row'>
+        <%= simple_form_for p do |status| %>
+          <%= status.input :status, collection: p.statuses, :selected => "#{p.status}", :input_html => { class: 'input-sm' }, :wrapper_html => {class: 'col-xs-6'}, label: false  %>
+          <div class='col-xs-6'>
+            <%= status.button :submit, class: 'btn btn-primary btn-sm' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <hr>
   <% end %>
 </div>
