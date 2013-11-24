@@ -77,7 +77,7 @@ JournoTaskManager::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-  config.assets.initialize_on_precompile = true
+  config.assets.initialize_on_precompile = false
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
